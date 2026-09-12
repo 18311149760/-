@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+<meta name="theme-color" content="#ffeef7">
+<title>甜心消消乐 · Sweet Tiles</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎀</text></svg>">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ======== 全局渐变定义（供所有图标引用） ======== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <radialGradient id="gStar" cx="35%" cy="30%" r="80%">
+      <stop offset="0%" stop-color="#fff6c9"/><stop offset="45%" stop-color="#ffd94d"/><stop offset="100%" stop-color="#f5a623"/>
+    </radialGradient>
+    <radialGradient id="gHeart" cx="35%" cy="28%" r="85%">
+      <stop offset="0%" stop-color="#ffc4d6"/><stop offset="45%" stop-color="#ff6b9d"/><stop offset="100%" stop-color="#e83e7f"/>
+    </radialGradient>
+    <linearGradient id="gBow" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e3b8ff"/><stop offset="100%" stop-color="#a95fe0"/>
+    </linearGradient>
+    <radialGradient id="gStraw" cx="38%" cy="25%" r="90%">
+      <stop offset="0%" stop-color="#ff9d9d"/><stop offset="50%" stop-color="#ff5252"/><stop offset="100%" stop-color="#d6253d"/>
+    </radialGradient>
+    <linearGradient id="gLeaf" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#9be37e"/><stop offset="100%" stop-color="#43a047"/>
+    </linearGradient>
+    <radialGradient id="gCat" cx="42%" cy="32%" r="90%">
+      <stop offset="0%" stop-color="#ffe9c9"/><stop offset="60%" stop-color="#ffbe78"/><stop offset="100%" stop-color="#f2913d"/>
+    </radialGradient>
+    <linearGradient id="gMoon" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fff3c4"/><stop offset="55%" stop-color="#ffd460"/><stop offset="100%" stop-color="#f0a832"/>
+    </linearGradient>
+    <radialGradient id="gPetal" cx="50%" cy="30%" r="80%">
+      <stop offset="0%" stop-color="#ffd6ec"/><stop offset="60%" stop-color="#ff8fc7"/><stop offset="100%" stop-color="#f25ca2"/>
+    </radialGradient>
+    <radialGradient id="gCake" cx="42%" cy="30%" r="90%">
+      <stop offset="0%" stop-color="#ffe1ee"/><stop offset="55%" stop-color="#ff9ec6"/><stop offset="100%" stop-color="#ef6aa5"/>
+    </radialGradient>
+    <linearGradient id="gCup" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#c9a0ff"/><stop offset="100%" stop-color="#8a5cf0"/>
+    </linearGradient>
+    <radialGradient id="gShell" cx="40%" cy="30%" r="90%">
+      <stop offset="0%" stop-color="#ffe9f4"/><stop offset="50%" stop-color="#ffb3d9"/><stop offset="100%" stop-color="#e879b9"/>
+    </radialGradient>
+    <radialGradient id="gCherry" cx="35%" cy="28%" r="85%">
+      <stop offset="0%" stop-color="#ff9d9d"/><stop offset="50%" stop-color="#f43f5e"/><stop offset="100%" stop-color="#be123c"/>
+    </radialGradient>
+    <radialGradient id="gBear" cx="42%" cy="30%" r="90%">
+      <stop offset="0%" stop-color="#f4c89a"/><stop offset="60%" stop-color="#d99a5b"/><stop offset="100%" stop-color="#b0722f"/>
+    </radialGradient>
+    <linearGradient id="gTitle" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ff7eb3"/><stop offset="55%" stop-color="#b07ef7"/><stop offset="100%" stop-color="#6f9dff"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<!-- ======== 梦幻背景层 ======== -->
+<div class="bg-orbs" aria-hidden="true">
+  <i class="orb orb1"></i><i class="orb orb2"></i><i class="orb orb3"></i><i class="orb orb4"></i>
+</div>
+<div class="bg-stars" id="bgStars" aria-hidden="true"></div>
+
+<div class="app" id="app">
+
+  <!-- ======== 首页 ======== -->
+  <section class="screen screen-home is-active" id="screenHome">
+    <div class="home-deco" aria-hidden="true">
+      <span class="float-icon fi1"></span><span class="float-icon fi2"></span>
+      <span class="float-icon fi3"></span><span class="float-icon fi4"></span>
+      <span class="float-icon fi5"></span><span class="float-icon fi6"></span>
+    </div>
+
+    <div class="logo-wrap">
+      <div class="logo-crown" aria-hidden="true"></div>
+      <h1 class="logo">甜心消消乐</h1>
+      <p class="logo-sub">SWEET · TILE · MATCH</p>
+    </div>
+
+    <p class="home-tip">点一点卡片放进小格子<br>集齐 <b>3</b> 张相同图案就能消除哦</p>
+
+    <div class="diff-cards" id="diffCards">
+      <button class="diff-card diff-easy" data-diff="easy">
+        <span class="diff-icon"></span>
+        <span class="diff-name">简单</span>
+        <span class="diff-desc">48 张 · 6 种图案</span>
+        <span class="diff-best" data-best="easy"></span>
+      </button>
+      <button class="diff-card diff-mid" data-diff="medium">
+        <span class="diff-icon"></span>
+        <span class="diff-name">中等</span>
+        <span class="diff-desc">81 张 · 9 种图案</span>
+        <span class="diff-best" data-best="medium"></span>
+      </button>
+      <button class="diff-card diff-hard" data-diff="hard">
+        <span class="diff-icon"></span>
+        <span class="diff-name">困难</span>
+        <span class="diff-desc">120 张 · 12 种图案</span>
+        <span class="diff-best" data-best="hard"></span>
+      </button>
+    </div>
+
+    <p class="home-foot">集满 7 格还没有消除就会失败，要小心规划哦 ✦</p>
+  </section>
+
+  <!-- ======== 游戏页 ======== -->
+  <section class="screen screen-game" id="screenGame">
+    <header class="hud">
+      <button class="hud-btn" id="btnHome" aria-label="返回首页">
+        <svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="hud-mid">
+        <span class="hud-diff" id="hudDiff">简单</span>
+        <span class="hud-timer" id="hudTimer">0:00</span>
+      </div>
+      <button class="hud-btn" id="btnMute" aria-label="声音开关">
+        <svg viewBox="0 0 24 24" class="ic-sound-on"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/><path d="M16 8.5a5 5 0 010 7M18.5 6a8.5 8.5 0 010 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <svg viewBox="0 0 24 24" class="ic-sound-off"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/><path d="M16 9l6 6M22 9l-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+      <button class="hud-btn" id="btnRestart" aria-label="重新开始">
+        <svg viewBox="0 0 24 24"><path d="M4 10a8 8 0 111.5 6.5M4 10V4m0 6h6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </header>
+
+    <div class="board-wrap">
+      <div class="board" id="board"></div>
+    </div>
+
+    <div class="park-row" id="parkRow" hidden>
+      <span class="park-label">暂存区</span>
+      <div class="park-slots" id="parkSlots"></div>
+    </div>
+
+    <div class="tray-wrap">
+      <div class="tray" id="tray"></div>
+    </div>
+
+    <div class="props">
+      <button class="prop-btn" id="btnUndo">
+        <span class="prop-ico">
+          <svg viewBox="0 0 24 24"><path d="M9 14L4 9l5-5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 9h9a7 7 0 017 7 7 7 0 01-7 7h-2" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg>
+        </span>
+        <span class="prop-name">撤回</span>
+        <span class="prop-count" id="cntUndo">3</span>
+      </button>
+      <button class="prop-btn" id="btnPark">
+        <span class="prop-ico">
+          <svg viewBox="0 0 24 24"><path d="M12 4l7 4-7 4-7-4 7-4z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><path d="M5 12l7 4 7-4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><path d="M5 16l7 4 7-4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></svg>
+        </span>
+        <span class="prop-name">移出</span>
+        <span class="prop-count" id="cntPark">2</span>
+      </button>
+      <button class="prop-btn" id="btnShuffle">
+        <span class="prop-ico">
+          <svg viewBox="0 0 24 24"><path d="M4 7h4l3 4 4 6h5m0 0l-2.5-2.5M20 17l-2.5 2.5M4 17h4l2-2.7M15.5 7H20m0 0L17.5 4.5M20 7l-2.5 2.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <span class="prop-name">洗牌</span>
+        <span class="prop-count" id="cntShuffle">2</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- ======== 结算弹窗 ======== -->
+  <div class="overlay" id="overlay">
+    <div class="modal" id="modal">
+      <div class="modal-emoji" id="modalEmoji">🎉</div>
+      <h2 class="modal-title" id="modalTitle">太棒了！</h2>
+      <div class="modal-stars" id="modalStars"></div>
+      <p class="modal-desc" id="modalDesc"></p>
+      <div class="modal-btns">
+        <button class="mbtn mbtn-ghost" id="btnModalHome">返回首页</button>
+        <button class="mbtn mbtn-main" id="btnModalAgain">再玩一次</button>
+      </div>
+      <button class="mbtn mbtn-next" id="btnModalNext">挑战下一难度 ➜</button>
+    </div>
+  </div>
+
+  <div class="fx-layer" id="fxLayer" aria-hidden="true"></div>
+</div>
+
+<script src="js/icons.js"></script>
+<script src="js/game.js"></script>
+</body>
+</html>
